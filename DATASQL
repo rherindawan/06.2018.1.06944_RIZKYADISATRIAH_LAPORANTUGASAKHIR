@@ -1,0 +1,77 @@
+SQL> create tablespace PraktikumModul1
+  2  datafile 'D:\basdat\modul1\praktikummodul1.dbf'
+  3  size 30M;
+Tablespace created.
+SQL> Create user rizkyad_06944
+  2  IDENTIFIED BY rizky
+  3  DEFAULT TABLESPACE PraktikumModul1
+  4  QUOTA 30M ON PraktikumModul1;
+
+User created.
+
+SQL> GRANT ALL PRIVILEGES TO rizkyad_06944;
+
+Grant succeeded.
+SQL> create table parfum
+  2  (
+  3  id_parfum INTEGER not null,
+  4  nama_parfum VARCHAR2(15),
+  5  harga_parfum NUMBER(10),
+  6  expired_parfum DATE,
+  7  constraint PK_parfum primary key(id_parfum)
+  8  );
+
+Table created.
+
+SQL> create table owner
+  2  (
+  3  username_owner VARCHAR2(15) not null,
+  4  password_owner NUMBER not null,
+  5  constraint PK_owner primary key(username_owner)
+  6  );
+
+Table created.
+SQL> create table transaksi
+  2  (
+  3  id_transaksi INTEGER not null,
+  4  id_parfum INTEGER,
+  5  username_owner VARCHAR2(15),
+  6  tanggal_transaksi DATE,
+  7  ukuran_botol_parfum NUMBER(5),
+  8  prosentase_alkohol FLOAT(4),
+  9  jumlah_bayar NUMBER(10),
+ 10  jumlah_kembalian NUMBER(10),
+ 11  total_transaksi NUMBER(10),
+ 12  constraint PK_transaksi primary key(id_transaksi)
+ 13  );
+
+Table created.
+SQL> insert into parfum (id_parfum,nama_parfum,harga_parfum,volume_parfum)values(id_parfum.nextval,'escada','10000','10');
+
+1 row created.
+
+SQL> insert into parfum (id_parfum,nama_parfum,harga_parfum,volume_parfum)values(id_parfum.nextval,'flower','20000','20');
+
+1 row created.
+
+SQL> select * from parfum
+SQL> insert all
+  2  into parfum (id_parfum,nama_parfum,harga_parfum,volume_parfum)values(3,'creay','30000','30')
+  3  into parfum (id_parfum,nama_parfum,harga_parfum,volume_parfum)values(4,'sreat','40000','40')
+  4  into parfum (id_parfum,nama_parfum,harga_parfum,volume_parfum)values(5,'fruity','50000','50')
+  5  select 1 from dual;
+SQL> insert into parfum (id_parfum,nama_parfum,harga_parfum,volume_parfum)values(id_parfum.nextval,'escada','10000','10');
+SQL> insert into parfum (id_parfum,nama_parfum,harga_parfum,volume_parfum)values(id_parfum.nextval,'flower','20000','20');
+SQL> insert all
+  2  into prosentase_alkohol (id_prosentase_alkohol,volume_alkohol,harga_vol_alkohol) values (4,10,500)
+  3  into prosentase_alkohol (id_prosentase_alkohol,volume_alkohol,harga_vol_alkohol) values (5,10,500)
+  4  select 1 from dual;
+
+2 rows created.
+SQL> insert all
+  2  into transaksi (id_transaksi,tgl_transaksi,id_parfum,uang_bayar,kembalian,id_prosentase_alkohol,total_harga) values (1,to_date('01/01/2020','dd/mm/yyyy'),3,50000,10000,1,20000)
+  3  into transaksi (id_transaksi,tgl_transaksi,id_parfum,uang_bayar,kembalian,id_prosentase_alkohol,total_harga) values (2,to_date('01/01/2020','dd/mm/yyyy'),3,50000,10000,1,30000)
+  6  into transaksi (id_transaksi,tgl_transaksi,id_parfum,uang_bayar,kembalian,id_prosentase_alkohol,total_harga) values (5,to_date('01/02/2020','dd/mm/yyyy'),4,50000,10000,1,30000)
+  7  select 1 from dual;
+5 rows created.
+
